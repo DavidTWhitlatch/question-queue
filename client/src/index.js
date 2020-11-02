@@ -1,16 +1,21 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { ActionCableProvider } from 'react-actioncable-provider';
-import wsUrl from './services/ws-url'
+import { BrowserRouter as Router } from 'react-router-dom'
+import wsUrl from './services/ws-url';
+import actionCable from 'actioncable';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
+const CableApp = {}
+
+CableApp.cable = actionCable.createConsumer(wsUrl);
+
 ReactDOM.render(
   <React.StrictMode>
-    <ActionCableProvider url={wsUrl}>
-      <App />
-    </ActionCableProvider>
+    <Router>
+      <App cableApp={CableApp} />
+    </Router>
   </React.StrictMode>,
   document.getElementById('root')
 );

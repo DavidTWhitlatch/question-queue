@@ -1,42 +1,58 @@
-import { useState, useEffect } from 'react';
-import { ActionCableConsumer } from 'react-actioncable-provider';
+import { useState } from 'react';
+import { Switch, Route, useHistory, Link } from 'react-router-dom';
+import RoomContainer from 'containers/RoomContainer';
 import './App.css';
-import CreateQuestion from './components/CreateQuestion';
-import Questions from './components/Questions';
-import RoomCode from './components/RoomCode';
-import { getAllQuestions, postQuestion } from './services/questions';
+import Home from 'screens/Home';
+import { postRoom } from 'services/rooms';
+import { postUsername } from 'services/usernames';
+import { getOneRoom } from 'services/rooms';
 
-function App() {
-  const [questions, setQuestions] = useState([]);
+function App({ cableApp }) {
+  const [username, setUsername] = useState(null)
+  const [room, setRoom] = useState(null);
+  const [roomForm, setRoomForm] = useState({
+    code: ''
+  })
+  const history = useHistory();
 
-  useEffect(() => {
-    const fetchQuestions = async () => {
-      const qList = await getAllQuestions();
-      setQuestions(qList);
-    }
-    fetchQuestions()
-  }, []);
-
-  const handleCreate = async (formData) => {
-    await postQuestion(formData);
+  const handleRoomCreate = async (formData) => {
+    const user = await postUsername(formData);
+    setUsername(user);
+    const roomInfo = await postRoom({ user_id: user.id });
+    setRoom(roomInfo);
+    history.push(`/rooms/${roomInfo.code}`);
   }
 
-  const handleReceive = (qData) => {
-    setQuestions(qData);
+  const handleRoomJoin = async (formData) => {
+    const user = await postUsername(formData);
+    setUsername(user);
+    const roomInfo = await getOneRoom(roomForm.code);
+    setRoom(roomInfo);
+    history.push(`/rooms/${roomForm.code}`);
   }
 
   return (
     <div className="App">
-      <ActionCableConsumer
-        channel={{
-          channel: 'RoomChannel'
-        }}
-        onConnected={() => {console.log("connected")}}
-        onReceived={handleReceive}
-      />
-      <RoomCode />
-      <Questions questions={questions} />
-      <CreateQuestion handleCreate={handleCreate} />
+      <Link to='/'><h1>Question Queue</h1></Link>
+      <Switch>
+        <Route path='/rooms/:code'>
+          <RoomContainer
+            username={username}
+            cableApp={cableApp}
+            room={room}
+          />
+        </Route>
+        <Route path='/'>
+          <Home
+            handleRoomCreate={handleRoomCreate}
+            handleRoomJoin={handleRoomJoin}
+            setUsername={setUsername}
+            username={username}
+            roomForm={roomForm}
+            setRoomForm={setRoomForm}
+          />
+        </Route>
+      </Switch>
     </div>
   );
 }
