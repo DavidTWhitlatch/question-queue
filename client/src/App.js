@@ -6,6 +6,7 @@ import Home from 'screens/Home';
 import { postRoom } from 'services/rooms';
 import { postUsername } from 'services/usernames';
 import { getOneRoom } from 'services/rooms';
+import Logo from 'assets/qq_logo.png'
 
 function App({ cableApp }) {
   const [username, setUsername] = useState(null)
@@ -33,7 +34,9 @@ function App({ cableApp }) {
 
   return (
     <div className="App">
-      <h1>Question Queue</h1>
+      <div className="header">
+        <img src={Logo} alt="qq logo" /><h1>Question Queue</h1>
+      </div>
       <Switch>
         <Route path='/rooms/:code'>
           <RoomContainer

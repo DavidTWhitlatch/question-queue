@@ -7,6 +7,21 @@ body {
   text-align: center;
 }
 
+.header {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  padding-top: 15px;
+}
+
+img {
+  max-height: 75px;
+}
+
+h1 {
+  margin: 10px 0;
+}
+
 .card {
   border: 0;
   margin: 30px auto;
