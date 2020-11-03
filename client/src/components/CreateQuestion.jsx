@@ -1,4 +1,5 @@
-import { useState } from 'react'
+import { useState } from 'react';
+import { Button } from '@material-ui/core';
 
 export default function CreateQuestion({ handleCreate }) {
   const [formData, setFormData] = useState({
@@ -26,7 +27,7 @@ export default function CreateQuestion({ handleCreate }) {
         value={content}
         onChange={handleChange}
       />
-      <button>Ask</button>
+      <Button color="primary" variant="contained" >Ask</Button>
     </form>
   )
 }

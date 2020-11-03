@@ -1,35 +1,54 @@
-import React from 'react'
-import { postUpvote } from 'services/questions'
+import React from 'react';
+import { Button } from '@material-ui/core';
+
+import { postUpvote, postAnswer } from 'services/questions';
 
 export default function Questions({
   questions,
   username,
-  room
+  room,
+  children
 }) {
 
-  const handleClick = async (id) => {
+  const handleUpvoteClick = async (id) => {
     await postUpvote(username.id, id);
+  }
+
+  const handleAnswerClick = async (id) => {
+    await postAnswer(id);
   }
 
   return (
     <div>
-      {questions.sort((a,b) => b.favorites_count - a.favorites_count).map(q => (
-        <div key={q.id} style={{ display: 'flex', justifyContent: 'center' }}>
+      <hr />
+      {questions.filter(q => !q.answered).map(q => (
+        <div key={q.id}>
           <p>{q.content}</p>
-          <p>{q.favorites_count}</p>
+          <p>{q.username.name}</p>
+          <p>upvotes: {q.favorites_count}</p>
           {
             username.id === room.username_id ?
-              <button>answered</button> :
+              <Button color="primary" variant="contained" onClick={() => handleAnswerClick(q.id)}>answered</Button> :
               <>
                 {
                   !q.favorites.includes(username.id) && q.username.id !== username.id &&
-                  <button onClick={() => handleClick(q.id)}>+1</button>
+                  <Button color="primary" variant="contained"  onClick={() => handleUpvoteClick(q.id)}>+1</Button>
                 }
               </>
           }
+          <hr />
         </div>
       ))
       }
+      {children}
+      <p>answered:</p>
+      {questions.filter(q => q.answered).map(q => (
+        <div key={q.id} style={{ backgroundColor: 'lightgray' }}>
+          <p>{q.content}</p>
+          <p>{q.username.name}</p>
+          <p>upvotes: {q.favorites_count}</p>
+        </div>
+      ))}
     </div >
   )
 }

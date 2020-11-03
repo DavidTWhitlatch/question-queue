@@ -1,3 +1,5 @@
+import { Button } from '@material-ui/core';
+
 export default function CreateRoom({
   setDisplay,
   setWhichSubmit
@@ -5,10 +7,10 @@ export default function CreateRoom({
   return (
     <div>
       <p>Start a new Queue</p>
-      <button onClick={() => {
+      <Button color="primary" variant="contained" onClick={() => {
         setDisplay(true);
         setWhichSubmit("create");
-      }}>New Queue</button>
+      }}>New Queue</Button>
     </div>
   )
 }

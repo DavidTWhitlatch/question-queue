@@ -13,3 +13,7 @@ export const postQuestion = async (question) => {
 export const postUpvote = async (userId, questionId) => {
   await api.post(`/upvote/${userId}/${questionId}`);
 }
+
+export const postAnswer = async (id) => {
+  await api.post(`/answer/${id}`);
+}

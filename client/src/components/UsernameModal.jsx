@@ -1,4 +1,6 @@
 import { useState } from 'react';
+import { Button } from '@material-ui/core';
+
 
 export default function UsernameModal({ handleSubmit }) {
   const [formData, setFormData] = useState({
@@ -24,7 +26,7 @@ export default function UsernameModal({ handleSubmit }) {
           value={name}
           onChange={handleChange}
         />
-        <button>Submit</button>
+        <Button color="primary" variant="contained">Submit</Button>
       </form>
     </div>
   )

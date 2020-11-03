@@ -28,6 +28,16 @@ class QuestionsController < ApplicationController
     RoomChannel.broadcast_to @room, serialized_data
   end
 
+  def answer
+    @question = Question.find(params[:id])
+    @question.answered = !@question.answered
+    @question.save
+    @room = @question.room
+    serialized_data = @room.questions.map { |q| QuestionSerializer.new(q) }
+
+    RoomChannel.broadcast_to @room, serialized_data
+  end
+
   private
 
   def question_params

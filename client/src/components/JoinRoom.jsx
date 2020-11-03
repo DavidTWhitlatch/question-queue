@@ -1,3 +1,5 @@
+import { Button } from '@material-ui/core';
+
 export default function JoinRoom({
   setRoomForm,
   setDisplay,
@@ -22,7 +24,7 @@ export default function JoinRoom({
         value={roomForm.code}
         onChange={handleChange}
       />
-      <button>submit</button>
+      <Button type="submit" color="primary" variant="contained">submit</Button>
     </form>
   )
 }

@@ -7,11 +7,12 @@ export default function Room({ questions, handleCreate, room, username }) {
     <div>
       <RoomCode room={room} />
       <Questions
-        questions={questions}
+        questions={questions.sort((a, b) => b.favorites_count - a.favorites_count)}
         username={username}
         room={room}
-      />
-      <CreateQuestion handleCreate={handleCreate} />
+      >
+        <CreateQuestion handleCreate={handleCreate} />
+      </Questions>
     </div>
   );
 }
