@@ -6,8 +6,8 @@ export default function CreateRoom({
 }) {
   return (
     <div>
-      <p>Start a new Queue</p>
-      <Button color="primary" variant="contained" onClick={() => {
+      <h3>Start a new Queue</h3>
+      <Button type='submit' color="primary" variant="contained" onClick={() => {
         setDisplay(true);
         setWhichSubmit("create");
       }}>New Queue</Button>

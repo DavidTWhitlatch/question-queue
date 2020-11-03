@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Switch, Route, useHistory, Link } from 'react-router-dom';
+import { Switch, Route, useHistory } from 'react-router-dom';
 import RoomContainer from 'containers/RoomContainer';
 import './App.css';
 import Home from 'screens/Home';
@@ -33,7 +33,7 @@ function App({ cableApp }) {
 
   return (
     <div className="App">
-      <Link to='/'><h1>Question Queue</h1></Link>
+      <h1>Question Queue</h1>
       <Switch>
         <Route path='/rooms/:code'>
           <RoomContainer

@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Button } from '@material-ui/core';
+import { Button, TextField } from '@material-ui/core';
 
 export default function CreateQuestion({ handleCreate }) {
   const [formData, setFormData] = useState({
@@ -22,12 +22,18 @@ export default function CreateQuestion({ handleCreate }) {
         content: ''
       })
     }}>
-      <input
-        type='text'
-        value={content}
-        onChange={handleChange}
-      />
-      <Button color="primary" variant="contained" >Ask</Button>
+      <div className="name-input">
+        <TextField
+          id="outlined-search"
+          label="Question"
+          type="search"
+          variant="outlined"
+          multiline
+          value={content}
+          onChange={handleChange}
+        />
+        <Button type='submit' color="primary" variant="contained">Ask</Button>
+      </div>
     </form>
   )
 }

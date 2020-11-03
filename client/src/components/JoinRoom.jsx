@@ -1,4 +1,4 @@
-import { Button } from '@material-ui/core';
+import { Button, TextField } from '@material-ui/core';
 
 export default function JoinRoom({
   setRoomForm,
@@ -18,13 +18,18 @@ export default function JoinRoom({
       setDisplay(true);
       setWhichSubmit("join");
     }}>
-      <p>Enter a room code:</p>
-      <input
-        type='text'
-        value={roomForm.code}
-        onChange={handleChange}
-      />
-      <Button type="submit" color="primary" variant="contained">submit</Button>
+      <h3>Enter a room code:</h3>
+      <div className="name-input">
+        <TextField
+          id="outlined-search"
+          label="Room Code"
+          type="search"
+          variant="outlined"
+          value={roomForm.code}
+          onChange={handleChange}
+        />
+        <Button type="submit" color="primary" variant="contained">submit</Button>
+      </div>
     </form>
   )
 }

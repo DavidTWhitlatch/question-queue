@@ -1,3 +1,4 @@
+import Card from 'components/Card'
 import CreateRoom from 'components/CreateRoom';
 import JoinRoom from 'components/JoinRoom';
 import UsernameModal from 'components/UsernameModal';
@@ -12,22 +13,26 @@ export default function Home({
   const [whichSubmit, setWhichSubmit] = useState(null)
 
   return (
-    <div>
+    <div className="body">
       {display && <UsernameModal
         {...props}
+        setDisplay={setDisplay}
         handleSubmit={whichSubmit === "create" ? handleRoomCreate : handleRoomJoin}
       />}
-      <h3>Question Queue</h3>
-      <CreateRoom
-        setDisplay={setDisplay}
-        setWhichSubmit={setWhichSubmit}
-      />
+      <Card>
+        <CreateRoom
+          setDisplay={setDisplay}
+          setWhichSubmit={setWhichSubmit}
+        />
+      </Card>
       <p>-- OR --</p>
-      <JoinRoom
-        {...props}
-        setDisplay={setDisplay}
-        setWhichSubmit={setWhichSubmit}
-      />
+      <Card>
+        <JoinRoom
+          {...props}
+          setDisplay={setDisplay}
+          setWhichSubmit={setWhichSubmit}
+        />
+      </Card>
     </div>
   )
 }

@@ -2,12 +2,12 @@ import React from 'react';
 import { Button } from '@material-ui/core';
 
 import { postUpvote, postAnswer } from 'services/questions';
+import Card from './Card';
 
 export default function Questions({
   questions,
   username,
-  room,
-  children
+  room
 }) {
 
   const handleUpvoteClick = async (id) => {
@@ -21,34 +21,26 @@ export default function Questions({
   return (
     <div>
       <hr />
-      {questions.filter(q => !q.answered).map(q => (
+      {questions.map(q => (
         <div key={q.id}>
-          <p>{q.content}</p>
-          <p>{q.username.name}</p>
-          <p>upvotes: {q.favorites_count}</p>
-          {
-            username.id === room.username_id ?
-              <Button color="primary" variant="contained" onClick={() => handleAnswerClick(q.id)}>answered</Button> :
-              <>
+          <Card>
+            <h3>{q.content}</h3>
+            <div className="card-details">
+              <div className="upvotes">
                 {
-                  !q.favorites.includes(username.id) && q.username.id !== username.id &&
-                  <Button color="primary" variant="contained"  onClick={() => handleUpvoteClick(q.id)}>+1</Button>
+                  username.id === room.username_id ?
+                    <Button className="question-button" color="primary" variant="contained" onClick={() => handleAnswerClick(q.id)}>answered</Button> :
+                    <Button className="question-button" type='submit' color="primary" disabled={q.favorites.includes(username.id)} variant="contained" onClick={() => handleUpvoteClick(q.id)}>+1</Button>
                 }
-              </>
-          }
-          <hr />
+                <p>upvotes: {q.favorites_count}</p>
+              </div>
+              <p style={{ color: "gray" }}>-{q.username.name}</p>
+            </div>
+          </Card>
         </div>
       ))
       }
-      {children}
-      <p>answered:</p>
-      {questions.filter(q => q.answered).map(q => (
-        <div key={q.id} style={{ backgroundColor: 'lightgray' }}>
-          <p>{q.content}</p>
-          <p>{q.username.name}</p>
-          <p>upvotes: {q.favorites_count}</p>
-        </div>
-      ))}
+      {!!questions.length && <hr />}
     </div >
   )
 }

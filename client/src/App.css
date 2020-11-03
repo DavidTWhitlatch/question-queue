@@ -1,16 +1,89 @@
+body {
+  background-color: rgb(229, 229, 229);
+  box-sizing: border-box;
+}
+
 .App {
   text-align: center;
 }
 
+.card {
+  border: 0;
+  margin: 30px auto;
+  border-radius: 6px;
+  color: rgba( 0, 0, 0, 0.87);
+  background: white;
+  box-shadow: 0 1px 4px 0 rgba( 0, 0, 0, 0.87);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  word-wrap: break-word;
+  font-size: .875rem;
+  padding: 0 30px 30px 30px;
+}
+
+.card-details {
+  display: flex;
+  justify-content: space-between;
+}
+
+.upvotes {
+  display: flex;
+  align-items: center;
+}
+
+.upvotes>button {
+  padding: 3px 6px;
+  min-width: 0;
+  margin-right: 10px;
+}
+
+.answered {
+  color: gray;
+}
+
+.answered hr {
+  border: 1px solid lightgray;
+}
+
 .modal {
   position: absolute;
-  background-color: lightgray;
-  height: 300px;
-  width: 300px;
-  border: 2px solid black;
-  margin: 0 auto;
+  height: 200px;
+  max-width: 400px;
   left: 0;
   right: 0;
-  padding-top: 10px;
-  z-index: 1;
+  z-index: 3;
+  padding-top: 60px;
+}
+
+hr {
+  width: 80%;
+}
+
+.modal-background {
+  background-color: rgba( 0, 0, 0, 0.87);
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 3;
+  height: 100%;
+  width: 100%;
+}
+
+.body {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.name-input {
+  margin-top: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+}
+
+.name-input>button {
+  height: 56px;
 }
