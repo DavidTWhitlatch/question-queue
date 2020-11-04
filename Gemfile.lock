@@ -96,6 +96,9 @@ GEM
     nio4r (2.5.4)
     nokogiri (1.10.10)
       mini_portile2 (~> 2.4.0)
+    passenger (5.0.28)
+      rack
+      rake (>= 0.8.1)
     pg (1.2.3)
     pry (0.13.1)
       coderay (~> 1.1)
@@ -139,6 +142,7 @@ GEM
     rb-fsevent (0.10.4)
     rb-inotify (0.10.1)
       ffi (~> 1.0)
+    redis (4.2.2)
     spring (2.1.1)
     spring-watcher-listen (2.0.1)
       listen (>= 2.7, < 4.0)
@@ -167,11 +171,13 @@ DEPENDENCIES
   bootsnap (>= 1.4.2)
   byebug
   listen (~> 3.2)
+  passenger (= 5.0.28)
   pg (>= 0.18, < 2.0)
   pry-rails
   puma (~> 4.1)
   rack-cors
   rails (~> 6.0.3, >= 6.0.3.4)
+  redis (~> 4.0)
   spring
   spring-watcher-listen (~> 2.0.0)
   tzinfo-data
