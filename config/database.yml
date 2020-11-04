@@ -81,5 +81,5 @@ test:
 production:
   <<: *default
   database: question_queue_production
-  username: question_queue
+  username: ubuntu
   password: <%= ENV['QUESTION_QUEUE_DATABASE_PASSWORD'] %>
