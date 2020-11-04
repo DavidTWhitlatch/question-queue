@@ -1,3 +1,3 @@
-const wsUrl = 'ws://localhost:3000/cable'
+const wsUrl = 'ws://18.189.178.233/cable'
 
 export default wsUrl
