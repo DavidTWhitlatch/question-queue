@@ -1,3 +1,3 @@
-const wsUrl = 'ws://18.189.178.233/cable'
+const wsUrl = 'ws://action-cable-example.herokuapp.com/cable'
 
 export default wsUrl

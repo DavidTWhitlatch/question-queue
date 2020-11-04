@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const baseUrl = 'http://18.188.36.252/'
+const baseUrl = 'https://action-cable-example.herokuapp.com/'
 
 const api = axios.create({
   baseURL: baseUrl
