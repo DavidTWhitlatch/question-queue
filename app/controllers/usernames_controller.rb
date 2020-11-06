@@ -1,5 +1,9 @@
 class UsernamesController < ApplicationController
 
+  def greet
+    render json: "Hello!"
+  end
+
   def create
     @username = Username.find_or_create_by(name: username_params[:name])
 

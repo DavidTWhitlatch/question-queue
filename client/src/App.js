@@ -27,7 +27,7 @@ function App({ cableApp }) {
   const handleRoomJoin = async (formData) => {
     const user = await postUsername(formData);
     setUsername(user);
-    const roomInfo = await getOneRoom(roomForm.code);
+    const roomInfo = await getOneRoom(roomForm.code.toUpperCase());
     setRoom(roomInfo);
     history.push(`/rooms/${roomForm.code}`);
   }
