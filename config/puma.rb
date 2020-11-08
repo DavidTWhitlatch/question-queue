@@ -61,8 +61,8 @@ pidfile ENV.fetch("PIDFILE") { "tmp/pids/server.pid" }
 #
 workers ENV.fetch("WEB_CONCURRENCY") { 1 }
 
-bind "unix:///var/run/puma/my_app.sock"
-pidfile "/var/run/puma/my_app.sock"
+bind "unix:///#{shared_path}/tmp/sockets/puma.sock"
+pidfile "/#{shared_path}/tmp/sockets/puma.sock"
 
 # Use the `preload_app!` method when specifying a `workers` number.
 # This directive tells Puma to first boot the application and load code
