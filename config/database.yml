@@ -79,7 +79,7 @@ test:
 #     url: <%= ENV['DATABASE_URL'] %>
 #
 production:
-  # <<: *default
+  <<: *default
   # database: question_queue_production
   # username: ubuntu
   # password: <%= ENV['QUESTION_QUEUE_DATABASE_PASSWORD'] %>
