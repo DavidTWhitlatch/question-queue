@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const baseUrl = 'https://questionqueue-env.eba-hzducp3t.us-east-2.elasticbeanstalk.com/'
+const baseUrl = 'https://api.questionqueue.com/'
 
 const api = axios.create({
   baseURL: baseUrl
