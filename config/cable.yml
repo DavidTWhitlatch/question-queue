@@ -1,6 +1,6 @@
 redis: &redis
   adapter: redis
-  url: redis://question-queue-001.azg9wp.0001.use2.cache.amazonaws.com:6379
+  url: redis://question-queue.azg9wp.ng.0001.use2.cache.amazonaws.com:6379
 
 development:
   adapter: async
