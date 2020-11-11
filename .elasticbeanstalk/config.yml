@@ -1,0 +1,19 @@
+branch-defaults:
+  master:
+    environment: QuestionQueue-env
+environment-defaults:
+  QuestionQueue-env:
+    branch: master
+    repository: questionqueue
+global:
+  application_name: question-queue
+  default_ec2_keyname: questionqueue3
+  default_platform: Ruby 2.7 running on 64bit Amazon Linux 2
+  default_region: us-east-2
+  include_git_submodules: true
+  instance_profile: null
+  platform_name: null
+  platform_version: null
+  profile: eb-cli
+  sc: git
+  workspace_type: Application
